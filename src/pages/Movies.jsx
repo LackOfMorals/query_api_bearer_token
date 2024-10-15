@@ -1,15 +1,28 @@
-import React from 'react';
-import "./App.css";
-import useQueryAPI from './MovieTableQuery';
+import React, { useEffect, useState } from 'react';
+import "../App.css";
+import useQueryAPI from '../components/MovieTableQuery';
+
+import { useOktaAuth } from '@okta/okta-react';
 
 
-function MovieTable() {
-  const MOVIES_QUERY = "";
 
-  const {readyForRender, listMovies} = useQueryAPI(MOVIES_QUERY); 
+
+const Movies = () =>  { 
+  const { authState, oktaAuth } = useOktaAuth();
+  const [userToken, setUserToken] = useState(null);
+
+   useEffect(() => {
+    if (!authState || !authState.isAuthenticated) {
+      // When user isn't authenticated, forget any ID Token
+      setUserToken(null);
+    } else {
+      setUserToken(authState.idToken["idToken"]);
+    }
+  }, [authState, oktaAuth]); // Update if authState changes
+
+  const {listMovies} = useQueryAPI(userToken); 
   
-  if(readyForRender) {
-    return (
+  return (
     <div className='movies-table-wrapper'>
     <table className='movies-table'>
       <tbody>
@@ -32,11 +45,7 @@ function MovieTable() {
         </tbody>
       </table>
     </div>
-
-          );
-
-  } else { return <div>Loading.....</div>};
-
+  );
 }
 
-export default MovieTable
+export default Movies;

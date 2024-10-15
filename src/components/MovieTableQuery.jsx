@@ -1,12 +1,7 @@
-import { encode } from "base-64";
 import { useEffect, useState } from "react";
 
-const useQueryAPI = ( query ) => {
+const useQueryAPI = ( idToken ) => {
   const [listMovies, setListMovies] = useState([]);
-  const [readyForRender, setReadyForRender] = useState(false);
-
-  const username = "neo4j"
-  const password = "password"
   
   useEffect( () => {
     const fetchData = async() => {
@@ -16,7 +11,7 @@ const useQueryAPI = ( query ) => {
               method : "POST",
               headers : {
                 "Content-Type" : "application/json",
-                'Authorization': 'Basic ' + encode(username + ":" + password),
+                'Authorization': 'Bearer ' + idToken,
                 },
               body: JSON.stringify({statement:"MATCH (p:Person)-[a:ACTED_IN]->(m:Movie) RETURN m.title, m.released, COLLECT(p.name) LIMIT 10"})
             }
@@ -30,7 +25,6 @@ const useQueryAPI = ( query ) => {
           
           setListMovies(moviesMap);
           
-          setReadyForRender(true);
           }  
 
       } catch(error) {
@@ -45,7 +39,7 @@ const useQueryAPI = ( query ) => {
   
   }, []);
 
-  return { readyForRender, listMovies};
+  return {listMovies};
   
 };
   
