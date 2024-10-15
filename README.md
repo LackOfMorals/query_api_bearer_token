@@ -18,9 +18,9 @@ Sign into your [Okta Developer Edition account](https://developer.okta.com/login
 
 ## Get the Code
 
-'''
+```
 git clone <https://github.com/LackOfMorals/query_api_bearer_token.git>
-'''
+```
 
 ## Run the Example
 
