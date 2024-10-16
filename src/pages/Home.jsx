@@ -36,14 +36,13 @@ const Home = () => {
         )}
         {!authState.isAuthenticated && (
           <Grid columns={1}>
-            <Header textAlign='left' as='h1'> Using Bearer id token with Neo4j Query API</Header>
+            <Header textAlign='left' as='h1'>One set of credentials</Header>
             <GridRow>
               <Container textAlign='left'>
               <p>
-                This application shows how a bearer token can be used with Neo4js Query API. 
+                This web application shows how a single set of credentials can be used to control access to the web application itself and obtain information from Neo4j to populate table. 
                 
-                When you click the login button below, you will be redirected to the login page on your Okta org.  The same token from Okta is 
-                used to authenticate with Neo4j to display a table that shows information about movies.
+                Click on the Login button to continue
               </p>
               </Container>
             </GridRow>
