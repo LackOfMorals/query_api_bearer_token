@@ -27,7 +27,7 @@ const Movies = (userIDToken) =>  {
   useEffect( () => {
     const fetchData = async() => {
       try {
-        const response = await fetch( "https://neo4j.giffard.xyz/db/neo4j/query/v2" ,
+        const response = await fetch( "http://localhost:7474/db/neo4j/query/v2" ,
             {
               method : "POST",
               headers : {
