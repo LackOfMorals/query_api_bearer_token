@@ -1,13 +1,15 @@
-# Using Bearer token from SSO with Neo4j Query API
+# Using Bearer token with Neo4j Query API
 
 ## Based on Okta react application exanple
 
-This example shows how to use the [Okta React Library][] and [React Router](https://github.com/ReactTraining/react-router) to login a user to a React application.  The login is achieved through the [PKCE Flow][], where the user is redirected to the Okta-Hosted login page.  After the user authenticates they are redirected back to the application with an ID token and access token.  The ID token is then used for authenticaion with Neo4j Query API.  This relies on this application and Neo4j using the same application in Okta.
+This example shows how to use SSO to access a web application that goes on to obtain data from Neo4j and only requires the user to enter their credentials once.  Another solution would have been to store credentials for Neo4j in the web application itself but that opens up a bucker of problems - the credentials being compromised, auditing who did what being difficult plus others , and it best avoided. 
 
+The examples makes use of the [Okta React Library][] and [React Router](https://github.com/ReactTraining/react-router) to login a user to a React based web application.  The login is achieved through the [PKCE Flow][], where the user is redirected to the Okta-Hosted login page.  After the user authenticates they are redirected back to the application with JWT that contains an ID token and access token.  Neo4j has been configured to use the same application in Okta.  This allows the ID token to be extracted from the JWT and used for auth with the Query API to retrieve data from Neo4j.
 ## Prerequisites
 
 Before running this sample, you will need the following:
 
+* Docker or Podman to run the Neo4j container locally.
 * An Okta Developer Account
 * Okta configured for a single page web application
 * Neo4j configured for SSO with the SPA in Okta
