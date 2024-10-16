@@ -10,8 +10,8 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-const CLIENT_ID = "0oakadewugRpwmMM25d7";
-const ISSUER = "https://dev-85257838.okta.com";
+const CLIENT_ID = "YOUR_OKTA_CLIENT_ID";
+const ISSUER = "https://YOUR_OKTA_ACCOUNT_FQDN";
 const OKTA_TESTING_DISABLEHTTPSCHECK = true;
 const REDIRECT_URI = `${window.location.origin}/login/callback`;
 
